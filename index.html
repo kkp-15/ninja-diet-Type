@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>あなたのダイエットタイプは？</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2em; }
+    input, select, button { font-size: 1.1em; margin: 1em; padding: 0.5em; }
+    #result { font-size: 1.2em; margin-top: 1em; }
+    a#share { display: inline-block; margin-top: 1em; padding: 0.6em 1em; background: #1da1f2; color: #fff; text-decoration: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>あなたのダイエットタイプは？</h1>
+  <input type="text" id="name" placeholder="あなたの名前">
+  <br>
+  <label>好きな食べ物：</label>
+  <select id="food">
+    <option value="0">ラーメン</option>
+    <option value="1">焼肉</option>
+    <option value="2">ケーキ</option>
+    <option value="3">白ごはん</option>
+    <option value="4">サラダ</option>
+    <option value="5">ピザ</option>
+    <option value="6">ハンバーガー</option>
+    <option value="7">寿司</option>
+  </select>
+  <br>
+  <label>太り方の傾向：</label>
+  <select id="gain">
+    <option value="0">ゆっくり確実に増える</option>
+    <option value="1">一気に増えて戻らない</option>
+    <option value="2">気づいたら太ってる</option>
+    <option value="3">年末年始だけ太る</option>
+    <option value="4">夏に痩せて冬に戻る</option>
+    <option value="5">筋トレして太る</option>
+    <option value="6">お菓子がやめられない</option>
+    <option value="7">寝る前に食べる</option>
+  </select>
+  <br>
+  <button onclick="diagnose()">診断する</button>
+  <div id="result"></div>
+  <a id="share" href="#" target="_blank">▶ Xで結果をシェアする</a>
+
+  <script>
+    const messages = [
+      {type: "スイーツ中毒型", desc: "糖分と愛に溺れて、今日もケーキが主食🍰", tag: "#ダイエット診断 #甘党"},
+      {type: "ストイック戦士型", desc: "意志が鋼。脂肪も敵も焼き尽くす🔥", tag: "#ダイエット診断 #筋トレ"},
+      {type: "チートデイ延長型", desc: "今日は特別！が週5日。気づけば体重も特別仕様🎂", tag: "#ダイエットタイプ"},
+      {type: "ラーメン我慢できない型", desc: "罪悪感よりスープの旨味を選ぶ🍜", tag: "#ラーメンは別腹"},
+      {type: "幽霊ジム会員型", desc: "課金はしてる。気持ちだけは細マッチョ💸", tag: "#ジム行ってない"},
+      {type: "夏だけ細い型", desc: "夏だけ急に本気出す🏖 冬？聞こえません", tag: "#夏痩せ冬戻り"},
+      {type: "炭水化物ラブ型", desc: "白ごはんこそ神。痩せるより満たされたい🍚", tag: "#ごはん大好き"},
+      {type: "寝る前爆食型", desc: "寝る前のアイスが至福。夢も太る🍦", tag: "#夜食の誘惑"},
+      {type: "アプリだけやる気型", desc: "カロリーは記録した。運動は…明日ね📱", tag: "#ダイエットあるある"},
+      {type: "お正月増量型", desc: "毎年正月で3kg増。春には戻す（予定）🎍", tag: "#年末年始太り"},
+      {type: "納豆信者型", desc: "納豆は痩せるって聞いたから毎朝3パック🫘", tag: "#健康オタク"},
+      {type: "SNS映え優先型", desc: "サラダの写真で満腹。フォロワーの胃袋狙い📸", tag: "#インスタ飯"},
+      {type: "推し活絞り型", desc: "ライブまでに痩せる！終わったら食べ放題💃", tag: "#推しのために痩せる"},
+      {type: "カロリー理論型", desc: "食べてもゼロカロリー理論で乗り切る✨", tag: "#カロリーゼロ理論"},
+      {type: "筋肉の下に脂肪型", desc: "筋トレしてもお腹だけは強敵💪", tag: "#腹筋見えない"},
+      {type: "人生一度きり型", desc: "美味しく食べたならゼロカロリー説！🍕", tag: "#人生楽しんだもん勝ち"}
+    ];
+
+    function diagnose() {
+      const name = document.getElementById("name").value.trim();
+      const foodValue = parseInt(document.getElementById("food").value);
+      const gainValue = parseInt(document.getElementById("gain").value);
+      const resultArea = document.getElementById("result");
+      const shareLink = document.getElementById("share");
+
+      if (name === "") {
+        alert("名前を入力してください！");
+        return;
+      }
+
+      let score = 0;
+      for (let i = 0; i < name.length; i++) {
+        score += name.charCodeAt(i);
+      }
+
+      const index = (score + foodValue + gainValue) % messages.length;
+      const msg = messages[index];
+
+      resultArea.innerHTML = `あなたは <strong>${msg.type}</strong> です！<br>${msg.desc}`;
+      const tweet = `私は「${msg.type}」でした！${msg.desc}\n${msg.tag} https://あなたのサイトURL`;
+      shareLink.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet);
+      shareLink.style.display = "inline-block";
+    }
+  </script>
+</body>
+</html>
