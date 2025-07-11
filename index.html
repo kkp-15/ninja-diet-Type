@@ -5,26 +5,55 @@
   <title>あなたのダイエットタイプは？</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2em; }
-    input, select, button { font-size: 1.1em; margin: 1em; padding: 0.5em; }
-    #result { font-size: 1.2em; margin-top: 1em; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2em;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+    }
+    input, select, button {
+      font-size: 1.1em;
+      margin: 0.6em;
+      padding: 0.6em;
+      width: 90%;
+      max-width: 400px;
+    }
+    #result {
+      font-size: 1.2em;
+      margin-top: 1em;
+      padding: 1em;
+    }
     a#share, .x-link {
       display: inline-block;
-      margin-top: 1em;
-      padding: 0.6em 1.2em;
+      margin-top: 1.5em;
+      padding: 0.8em 1.5em;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1em;
     }
-    a#share { background: #1da1f2; color: #fff; }
-    .x-link { background: #000; color: #fff; margin-top: 3em; }
+    a#share {
+      background: #1da1f2;
+      color: #fff;
+    }
+    .x-link {
+      background: #000;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
   <h1>あなたのダイエットタイプは？</h1>
+
   <input type="text" id="name" placeholder="あなたの名前">
   <br>
-  <label>好きな食べ物：</label>
+
+  <label>好きな食べ物：</label><br>
   <select id="food">
     <option value="0">ラーメン</option>
     <option value="1">焼肉</option>
@@ -36,7 +65,8 @@
     <option value="7">寿司</option>
   </select>
   <br>
-  <label>太り方の傾向：</label>
+
+  <label>太り方の傾向：</label><br>
   <select id="gain">
     <option value="0">ゆっくり確実に増える</option>
     <option value="1">一気に増えて戻らない</option>
@@ -48,14 +78,17 @@
     <option value="7">寝る前に食べる</option>
   </select>
   <br>
-  <button onclick="diagnose()">診断する</button>
-  <div id="result"></div>
-  <a id="share" href="#" target="_blank">▶ Xで結果をシェアする</a>
 
-  <!-- あなたのXリンク -->
+  <button onclick="diagnose()">診断する</button>
+
+  <div id="result"></div>
+
+  <a id="share" href="#" target="_blank" style="display:none;">▶ Xで結果をシェアする</a>
+
+  <!-- フォローボタン -->
   <br><br>
-  <a href="https://x.com/kkp_webninja" target="_blank" class="x-link">
-    🐦 私のX（@kkp_webninja）をフォローする
+  <a href="https://x.com/intent/follow?screen_name=kkp_webninja" target="_blank" class="x-link">
+    🐦 @kkp_webninja をフォロー
   </a>
 
   <script>
