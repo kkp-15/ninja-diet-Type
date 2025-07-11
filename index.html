@@ -8,7 +8,16 @@
     body { font-family: sans-serif; text-align: center; padding: 2em; }
     input, select, button { font-size: 1.1em; margin: 1em; padding: 0.5em; }
     #result { font-size: 1.2em; margin-top: 1em; }
-    a#share { display: inline-block; margin-top: 1em; padding: 0.6em 1em; background: #1da1f2; color: #fff; text-decoration: none; border-radius: 5px; }
+    a#share, .x-link {
+      display: inline-block;
+      margin-top: 1em;
+      padding: 0.6em 1.2em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a#share { background: #1da1f2; color: #fff; }
+    .x-link { background: #000; color: #fff; margin-top: 3em; }
   </style>
 </head>
 <body>
@@ -42,6 +51,12 @@
   <button onclick="diagnose()">診断する</button>
   <div id="result"></div>
   <a id="share" href="#" target="_blank">▶ Xで結果をシェアする</a>
+
+  <!-- あなたのXリンク -->
+  <br><br>
+  <a href="https://x.com/kkp_webninja" target="_blank" class="x-link">
+    🐦 私のX（@kkp_webninja）をフォローする
+  </a>
 
   <script>
     const messages = [
@@ -84,7 +99,7 @@
       const msg = messages[index];
 
       resultArea.innerHTML = `あなたは <strong>${msg.type}</strong> です！<br>${msg.desc}`;
-      const tweet = `私は「${msg.type}」でした！${msg.desc}\n${msg.tag} https://あなたのサイトURL`;
+      const tweet = `私は「${msg.type}」でした！${msg.desc}\n${msg.tag} https://kkp-15.github.io/ninja-diet-Type/`;
       shareLink.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet);
       shareLink.style.display = "inline-block";
     }
