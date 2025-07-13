@@ -196,21 +196,14 @@
         }
       }
 
-      // 名前によるハッシュ値で最終的なタイプを決定（同点の場合や、わずかなランダム要素）
-      let nameHash = 0;
-      for (let i = 0; i < name.length; i++) {
-        nameHash += name.charCodeAt(i);
-      }
-      // FoodValueとGainValueもハッシュ値に影響させる
-      nameHash = (nameHash + foodValue + gainValue) % 1000; // 0-999の範囲に収める
-
       let finalResultType;
       if (resultTypes.length === 1) {
           finalResultType = resultTypes[0];
       } else {
-          // 同点の場合、名前のハッシュ値と組み合わせて決定
-          const indexToSelect = nameHash % resultTypes.length;
-          finalResultType = resultTypes[indexToSelect];
+          // 同点の場合の処理：ここでは最初の候補を選択
+          // または、さらに質問を追加して絞り込むなどのロジックも検討可能
+          // 今回は名前の影響をなくすため、純粋なスコアで同点なら最初の候補
+          finalResultType = resultTypes[0]; 
       }
       
       // messages配列から該当するメッセージを見つける
